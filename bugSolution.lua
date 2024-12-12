@@ -1,0 +1,30 @@
+local function foo(a, b)
+  if a == nil then a = 0 end
+  if b == nil then b = 0 end
+  return a + b
+end
+
+print(foo(nil, 10)) -- Output: 10
+print(foo(5, nil)) -- Output: 5
+print(foo(nil, nil)) -- Output: 0
+
+local function bar(a, b)
+  a = a or 0
+  b = b or 0
+  return a + b
+end
+
+print(bar(nil, 10)) -- Output: 10
+print(bar(5, nil)) -- Output: 5
+print(bar(nil, nil)) -- Output: 0
+
+--The difference between using the 'or' operator versus explicitly checking for nil is subtle, but can lead to unexpected behaviour when dealing with values that are considered 'falsy' in Lua.
+--Consider a function that takes a table as an argument:
+
+local function processTable(t)
+  if t == nil then t = {} end
+  -- ... process t ...
+end
+
+processTable(nil) -- t will be an empty table {}
+processTable({}) -- t will still be an empty table {}
